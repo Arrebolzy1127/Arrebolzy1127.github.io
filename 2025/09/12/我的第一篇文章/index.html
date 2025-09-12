@@ -1,0 +1,313 @@
+<!DOCTYPE html><html lang="zh-Hans" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>我的第一篇文章 | zy de 小破站</title><meta name="author" content="zy"><meta name="copyright" content="zy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Python语法复习1基础语法1.1基础语法数字（Number）类型：整数（int）、布尔型（bool）、浮点数（float）和复数（complex）。 复数由实部和虚部组成，形式为 a + bj或者complex(a,b)，其中 a 是实部，b 是虚部，a和b都是浮点型，j 表示虚数单位。 字符串（String）类型：  Python 中单引号 ‘ 和双引号 “ 使用完全相同。 使用三引号(‘’">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我的第一篇文章">
+<meta property="og:url" content="http://example.com/2025/09/12/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/index.html">
+<meta property="og:site_name" content="zy de 小破站">
+<meta property="og:description" content="Python语法复习1基础语法1.1基础语法数字（Number）类型：整数（int）、布尔型（bool）、浮点数（float）和复数（complex）。 复数由实部和虚部组成，形式为 a + bj或者complex(a,b)，其中 a 是实部，b 是虚部，a和b都是浮点型，j 表示虚数单位。 字符串（String）类型：  Python 中单引号 ‘ 和双引号 “ 使用完全相同。 使用三引号(‘’">
+<meta property="og:locale">
+<meta property="og:image" content="http://example.com/img/butterfly-icon.png">
+<meta property="article:published_time" content="2025-09-12T03:36:50.000Z">
+<meta property="article:modified_time" content="2025-09-12T03:37:45.323Z">
+<meta property="article:author" content="zy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "我的第一篇文章",
+  "url": "http://example.com/2025/09/12/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/",
+  "image": "http://example.com/img/butterfly-icon.png",
+  "datePublished": "2025-09-12T03:36:50.000Z",
+  "dateModified": "2025-09-12T03:37:45.323Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "zy",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2025/09/12/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '我的第一篇文章',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/modify.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-categories-card@1.0.0/lib/categorybar.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/url(https:/modest-tomato-rt6tiqkcc4.edgeone.app/%E5%A4%B4%E5%83%8F.jpeg));"></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">zy de 小破站</span></a><a class="nav-page-title" href="/"><span class="site-name">我的第一篇文章</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">我的第一篇文章</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-09-12T03:36:50.000Z" title="Created 2025-09-12 11:36:50">2025-09-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-09-12T03:37:45.323Z" title="Updated 2025-09-12 11:37:45">2025-09-12</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="Python语法复习"><a href="#Python语法复习" class="headerlink" title="Python语法复习"></a>Python语法复习</h1><h2 id="1基础语法"><a href="#1基础语法" class="headerlink" title="1基础语法"></a>1基础语法</h2><h3 id="1-1基础语法"><a href="#1-1基础语法" class="headerlink" title="1.1基础语法"></a>1.1基础语法</h3><p><strong>数字（Number）类型</strong>：整数（int）、布尔型（<strong>bool</strong>）、浮点数（float）和复数（complex）。 复数由实部和虚部组成，形式为 a + bj或者complex(a,b)，其中 a 是实部，b 是虚部，a和b都是浮点型，j 表示虚数单位。</p>
+<p><strong>字符串（String）类型：</strong></p>
+<ul>
+<li>Python 中单引号 <strong>‘</strong> 和双引号 <strong>“</strong> 使用完全相同。</li>
+<li>使用三引号(<strong>‘’’</strong> 或 <strong>“””</strong>)可以指定一个多行字符串。</li>
+<li>转义符 \。</li>
+<li>反斜杠可以用来转义，使用 <strong>r</strong> 可以让反斜杠不发生转义。 如 <strong>r”this is a line with \n”</strong> 则 <strong>\n</strong> 会显示，并不是换行。</li>
+<li>按字面意义级联字符串，如 <strong>“this “ “is “ “string”</strong> 会被自动转换为 <strong>this is string</strong>。</li>
+<li>字符串可以用 <strong>+</strong> 运算符连接在一起，用 ***** 运算符重复。</li>
+<li>Python 中的字符串有两种索引方式，从左往右以 <strong>0</strong> 开始，从右往左以 <strong>-1</strong> 开始。</li>
+<li>Python 中的字符串不能改变。</li>
+<li>Python 没有单独的字符类型，一个字符就是长度为 1 的字符串。</li>
+<li>字符串切片 **str[start:end]**，其中 start（包含）是切片开始的索引，end（不包含）是切片结束的索引。</li>
+<li>字符串的切片可以加上步长参数 step，语法格式如下：<strong>str[start:end:step]</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">import sys</span><br><span class="line">sys.stdout.write(&quot;Hello, world!\n&quot;)</span><br><span class="line"></span><br><span class="line">sys.stdout.write() 接收一个字符串作为参数，并将该字符串输出到控制台。</span><br><span class="line">\n 是换行符，用于在输出后换行。</span><br><span class="line">🔹 与 print() 的区别</span><br><span class="line">虽然 sys.stdout.write() 和 print() 都可以用于输出内容，但它们有一些区别：</span><br><span class="line">1.自动换行和空格:</span><br><span class="line">	print() 会自动在输出内容的末尾添加换行符\n，并在多个参数之间添加空格。</span><br><span class="line">sys.stdout.write() 不会自动添加换行符或空格，需要手动添加。</span><br><span class="line">2.参数类型:</span><br><span class="line">	print() 可以接收多个参数，并且可以自动将它们转换为字符串。</span><br><span class="line">sys.stdout.write() 只能接收一个字符串参数。</span><br><span class="line">3.底层实现:</span><br><span class="line">	print() 是一个高级函数，它在内部调用 sys.stdout.write() 来实现输出。</span><br><span class="line">sys.stdout.write() 是一个更底层的函数，它直接与标准输出流交互。</span><br><span class="line">💡 使用场景</span><br><span class="line">1.需要精确控制输出格式时:</span><br><span class="line">	例如，在输出进度条、动画等需要覆盖之前内容的情况下，可以使用 sys.stdout.write() 来避免自动换行。</span><br><span class="line">2.需要更高的性能时:</span><br><span class="line">	在某些情况下，sys.stdout.write() 可能比 print() 略快，因为它避免了一些额外的处理。</span><br><span class="line">3.重定向输出流时:</span><br><span class="line">	可以将 sys.stdout 重定向到文件或其他流，从而将输出内容保存到文件中。</span><br></pre></td></tr></table></figure>
+
+<p>print输出：默认输出是换行的，如果要实现不换行需要在变量末尾加上 <strong>end&#x3D;””</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print( x, end=&quot; &quot; )</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2基本数据类型"><a href="#1-2基本数据类型" class="headerlink" title="1.2基本数据类型"></a>1.2基本数据类型</h3><p>Number（数字），String（字符串），bool（布尔类型），list（列表），Tuple（元组），set（集合），dictionary（字典）</p>
+<ul>
+<li><strong>不可变数据（3 个）：</strong>Number（数字）、String（字符串）、Tuple（元组）；</li>
+<li><strong>可变数据（3 个）：</strong>List（列表）、Dictionary（字典）、Set（集合）。</li>
+</ul>
+<p>此外还有一些高级的数据类型，如: 字节数组类型(bytes)。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">isinstance 和 type 的区别在于：</span><br><span class="line"></span><br><span class="line">type()不会认为子类是一种父类类型。</span><br><span class="line">isinstance()会认为子类是一种父类类型。</span><br><span class="line">&gt;&gt;&gt; class A:</span><br><span class="line">...     pass </span><br><span class="line">&gt;&gt;&gt; class B(A):</span><br><span class="line">...     pass</span><br><span class="line">&gt;&gt;&gt; isinstance(A(), A)</span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt; type(A()) == A </span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt; isinstance(B(), A)</span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt; type(B()) == A</span><br><span class="line">False</span><br><span class="line">========================================================================</span><br><span class="line">使用del语句删除一些对象引用。</span><br><span class="line">del 语句的语法是：</span><br><span class="line">del var1[, var2[, var3[...., varN]]]</span><br><span class="line">========================================================================注意：</span><br><span class="line">1、Python可以同时为多个变量赋值，如a, b = 1, 2。</span><br><span class="line">2、一个变量可以通过赋值指向不同类型的对象。</span><br><span class="line">3、数值的除法包含两个运算符：/ 返回一个浮点数，// 返回一个整数。</span><br><span class="line">4、在混合计算时，Python会把整型转换成为浮点数。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 布尔类型的整数表现</span><br><span class="line">print(int(True))   # 1</span><br><span class="line">print(int(False))  # 0</span><br><span class="line"></span><br><span class="line"># 使用 bool() 函数进行转换</span><br><span class="line">print(bool(0))         # False</span><br><span class="line">print(bool(42))        # True</span><br><span class="line">print(bool(&#x27;&#x27;))        # False</span><br><span class="line">print(bool(&#x27;Python&#x27;))  # True</span><br><span class="line">print(bool([]))        # False</span><br><span class="line">print(bool([1, 2, 3])) # True</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>List列表：</strong>列表中元素的类型可以不相同，它支持数字，字符串甚至可以包含列表（所谓嵌套）。列表是写在方括号 <strong>[]</strong> 之间、用逗号分隔开的元素列表。和字符串一样，列表同样可以被索引和截取，列表被截取后返回一个包含所需元素的新列表。（与字符串不一样，列表中的元素是可以改变的）</p>
+<p>加号 <strong>+</strong> 是列表连接运算符，星号 ***** 是重复操作。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">list = [ &#x27;abcd&#x27;, 786 , 2.23, &#x27;runoob&#x27;, 70.2 ]  # 定义一个列表</span><br><span class="line">tinylist = [123, &#x27;runoob&#x27;]</span><br><span class="line">print (tinylist * 2)    # 打印tinylist列表两次</span><br><span class="line">print (list + tinylist)  # 打印两个列表拼接在一起的结果</span><br><span class="line">输出：</span><br><span class="line">[123, &#x27;runoob&#x27;, 123, &#x27;runoob&#x27;]</span><br><span class="line">[&#x27;abcd&#x27;, 786, 2.23, &#x27;runoob&#x27;, 70.2, 123, &#x27;runoob&#x27;]</span><br><span class="line">=======================================================</span><br><span class="line">&gt;&gt;&gt; a = [1, 2, 3, 4, 5, 6]</span><br><span class="line">&gt;&gt;&gt; a[0] = 9</span><br><span class="line">&gt;&gt;&gt; a[2:5] = [13, 14, 15]</span><br><span class="line">&gt;&gt;&gt; a</span><br><span class="line">[9, 2, 13, 14, 15, 6]</span><br><span class="line">&gt;&gt;&gt; a[2:5] = []   # 将对应的元素值设置为 []</span><br><span class="line">&gt;&gt;&gt; a</span><br><span class="line">[9, 2, 6]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">字符串的 split() 方法会将字符串分割成一个列表。</span><br><span class="line"></span><br><span class="line">📝 基本用法</span><br><span class="line">text = &quot;hello world this is a test&quot;</span><br><span class="line">words = text.split()  # 默认以空格分割</span><br><span class="line">print(words)  # 输出: [&#x27;hello&#x27;, &#x27;world&#x27;, &#x27;this&#x27;, &#x27;is&#x27;, &#x27;a&#x27;, &#x27;test&#x27;]</span><br><span class="line">split() 方法会返回一个包含分割后子字符串的列表。</span><br><span class="line">默认情况下，split() 以空格作为分隔符。</span><br><span class="line">🔹 指定分隔符</span><br><span class="line">text = &quot;apple,banana,orange&quot;</span><br><span class="line">fruits = text.split(&quot;,&quot;)  # 以逗号分割</span><br><span class="line">print(fruits)  # 输出: [&#x27;apple&#x27;, &#x27;banana&#x27;, &#x27;orange&#x27;]</span><br><span class="line">可以通过传递参数给 split() 方法来指定分隔符。</span><br><span class="line">🔸 指定最大分割次数</span><br><span class="line">text = &quot;hello world this is a test&quot;</span><br><span class="line">words = text.split(&quot; &quot;, 2)  # 以空格分割，最多分割 2 次</span><br><span class="line">print(words)  # 输出: [&#x27;hello&#x27;, &#x27;world&#x27;, &#x27;this is a test&#x27;]</span><br><span class="line">可以通过传递第二个参数给 split() 方法来指定最大分割次数。</span><br><span class="line">💡 常见应用场景</span><br><span class="line">解析 CSV 文件:</span><br><span class="line">line = &quot;John,Doe,30,New York&quot;</span><br><span class="line">fields = line.split(&quot;,&quot;)</span><br><span class="line">print(fields)  # 输出: [&#x27;John&#x27;, &#x27;Doe&#x27;, &#x27;30&#x27;, &#x27;New York&#x27;]</span><br><span class="line">提取 URL 中的参数:</span><br><span class="line">url = &quot;https://example.com?name=John&amp;age=30&quot;</span><br><span class="line">params = url.split(&quot;?&quot;)[1].split(&quot;&amp;&quot;)</span><br><span class="line">print(params)  # 输出: [&#x27;name=John&#x27;, &#x27;age=30&#x27;]</span><br><span class="line">处理文本数据:</span><br><span class="line"></span><br><span class="line">text = &quot;this\tis\na\ttest&quot;</span><br><span class="line">words = text.split()  # 默认以空格、制表符、换行符等空白字符分割</span><br><span class="line">print(words)  # 输出: [&#x27;this&#x27;, &#x27;is&#x27;, &#x27;a&#x27;, &#x27;test&#x27;]</span><br><span class="line">⚠️ 注意事项</span><br><span class="line">如果字符串中没有分隔符，split() 方法会返回一个包含原始字符串的列表。</span><br><span class="line"></span><br><span class="line">如果分隔符连续出现，split() 方法会返回一个包含空字符串的列表。</span><br><span class="line"></span><br><span class="line">text = &quot;apple,,banana&quot;</span><br><span class="line">fruits = text.split(&quot;,&quot;)</span><br><span class="line">print(fruits)  # 输出: [&#x27;apple&#x27;, &#x27;&#x27;, &#x27;banana&#x27;]</span><br><span class="line">可以使用 strip() 方法去除分割后子字符串的空格。</span><br><span class="line"></span><br><span class="line">text = &quot; apple , banana &quot;</span><br><span class="line">fruits = [fruit.strip() for fruit in text.split(&quot;,&quot;)]</span><br><span class="line">print(fruits)  # 输出: [&#x27;apple&#x27;, &#x27;banana&#x27;]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">join() 方法是 Python 中用于将序列（例如列表、元组）中的元素连接成一个字符串的方法。它与 split() 方法的功能相反，split() 是将字符串分割成序列，而 join() 是将序列连接成字符串。</span><br><span class="line"></span><br><span class="line">📝 基本用法</span><br><span class="line">words = [&#x27;hello&#x27;, &#x27;world&#x27;, &#x27;this&#x27;, &#x27;is&#x27;, &#x27;a&#x27;, &#x27;test&#x27;]</span><br><span class="line">text = &#x27; &#x27;.join(words)  # 使用空格连接</span><br><span class="line">print(text)  # 输出: hello world this is a test</span><br><span class="line">&#x27; &#x27;.join(words) 的意思是：使用空格作为连接符，将 words 列表中的所有元素连接成一个字符串。</span><br><span class="line">join() 方法只能用于字符串类型的元素。</span><br><span class="line">🔹 指定连接符</span><br><span class="line">fruits = [&#x27;apple&#x27;, &#x27;banana&#x27;, &#x27;orange&#x27;]</span><br><span class="line">text = &#x27;,&#x27;.join(fruits)  # 使用逗号连接</span><br><span class="line">print(text)  # 输出: apple,banana,orange</span><br><span class="line">可以使用任何字符串作为连接符。</span><br><span class="line">🔸 连接其他类型的元素</span><br><span class="line">如果序列中包含非字符串类型的元素，需要先将它们转换为字符串。</span><br><span class="line"></span><br><span class="line">numbers = [1, 2, 3, 4, 5]</span><br><span class="line">text = &#x27;-&#x27;.join(map(str, numbers))  # 使用 map() 函数将数字转换为字符串</span><br><span class="line">print(text)  # 输出: 1-2-3-4-5</span><br><span class="line">map(str, numbers) 会将 numbers 列表中的每个元素都转换为字符串。</span><br><span class="line">💡 常见应用场景</span><br><span class="line">构建文件路径:</span><br><span class="line"></span><br><span class="line">parts = [&#x27;home&#x27;, &#x27;user&#x27;, &#x27;documents&#x27;, &#x27;file.txt&#x27;]</span><br><span class="line">path = &#x27;/&#x27;.join(parts)</span><br><span class="line">print(path)  # 输出: home/user/documents/file.txt</span><br><span class="line">生成 SQL 查询语句:</span><br><span class="line"></span><br><span class="line">fields = [&#x27;name&#x27;, &#x27;age&#x27;, &#x27;city&#x27;]</span><br><span class="line">query = &#x27;SELECT &#x27; + &#x27;, &#x27;.join(fields) + &#x27; FROM users&#x27;</span><br><span class="line">print(query)  # 输出: SELECT name, age, city FROM users</span><br><span class="line">格式化输出:</span><br><span class="line"></span><br><span class="line">data = [&#x27;John&#x27;, &#x27;Doe&#x27;, &#x27;30&#x27;]</span><br><span class="line">formatted_data = &#x27; | &#x27;.join(data)</span><br><span class="line">print(formatted_data)  # 输出: John | Doe | 30</span><br><span class="line">⚠️ 注意事项</span><br><span class="line">join() 方法只能用于连接序列，不能直接连接单个字符串。</span><br><span class="line"></span><br><span class="line">连接符可以是空字符串 &#x27;&#x27;，用于将元素紧密连接在一起。</span><br><span class="line"></span><br><span class="line">letters = [&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;]</span><br><span class="line">text = &#x27;&#x27;.join(letters)</span><br><span class="line">print(text)  # 输出: abc</span><br><span class="line">join() 方法不会修改原始序列。</span><br></pre></td></tr></table></figure>
+
+<p>tuple（元组）：元组（tuple）与列表类似，不同之处在于元组的元素不能修改。元组写在小括号 <strong>()</strong> 里，元素之间用逗号隔开，元组中的元素类型也可以不相同。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">实例</span><br><span class="line">#!/usr/bin/python3</span><br><span class="line"></span><br><span class="line">tuple = ( &#x27;abcd&#x27;, 786 , 2.23, &#x27;runoob&#x27;, 70.2  )</span><br><span class="line">tinytuple = (123, &#x27;runoob&#x27;)</span><br><span class="line"></span><br><span class="line">print (tuple)             # 输出完整元组</span><br><span class="line">print (tuple[0])          # 输出元组的第一个元素</span><br><span class="line">print (tuple[1:3])        # 输出从第二个元素开始到第三个元素</span><br><span class="line">print (tuple[2:])         # 输出从第三个元素开始的所有元素</span><br><span class="line">print (tinytuple * 2)     # 输出两次元组</span><br><span class="line">print (tuple + tinytuple) # 连接元组</span><br><span class="line">以上实例输出结果：</span><br><span class="line"></span><br><span class="line">(&#x27;abcd&#x27;, 786, 2.23, &#x27;runoob&#x27;, 70.2)</span><br><span class="line">abcd</span><br><span class="line">(786, 2.23)</span><br><span class="line">(2.23, &#x27;runoob&#x27;, 70.2)</span><br><span class="line">(123, &#x27;runoob&#x27;, 123, &#x27;runoob&#x27;)</span><br><span class="line">(&#x27;abcd&#x27;, 786, 2.23, &#x27;runoob&#x27;, 70.2, 123, &#x27;runoob&#x27;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; tup = (1, 2, 3, 4, 5, 6)</span><br><span class="line">&gt;&gt;&gt; print(tup[0])</span><br><span class="line">1</span><br><span class="line">&gt;&gt;&gt; print(tup[1:5])</span><br><span class="line">(2, 3, 4, 5)</span><br><span class="line">&gt;&gt;&gt; tup[0] = 11  # 修改元组元素的操作是非法的</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</span><br><span class="line">TypeError: &#x27;tuple&#x27; object does not support item assignment</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">虽然tuple的元素不可改变，但它可以包含可变的对象，比如list列表。</span><br><span class="line">构造包含 0 个或 1 个元素的元组比较特殊，所以有一些额外的语法规则：</span><br><span class="line"></span><br><span class="line">tup1 = ()    # 空元组</span><br><span class="line">tup2 = (20,) # 一个元素，需要在元素后添加逗号</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：string，list，tuple都属于sequence（序列）</strong></p>
+<p><strong>set（集合）：</strong>Python 中的集合（Set）是一种无序、可变的数据类型，用于存储唯一的元素。</p>
+<p>​	集合中的元素不会重复，并且可以进行交集、并集、差集等常见的集合操作。</p>
+<p>​	在 Python 中，集合使用大括号 <strong>{}</strong> 表示，元素之间用逗号 <strong>,</strong> 分隔。</p>
+<p>​	另外，也可以使用 <strong>set()</strong> 函数创建集合。</p>
+<p><strong>注意：</strong>创建一个空集合必须用 <strong>set()</strong> 而不是 **{ }**，因为 <strong>{ }</strong> 是用来创建一个空字典。</p>
+<p>创建格式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">parame = &#123;value01,value02,...&#125;</span><br><span class="line">或者</span><br><span class="line">set(value)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">sites = &#123;&#x27;Google&#x27;, &#x27;Taobao&#x27;, &#x27;Runoob&#x27;, &#x27;Facebook&#x27;, &#x27;Zhihu&#x27;, &#x27;Baidu&#x27;&#125;</span><br><span class="line"></span><br><span class="line">print(sites)   # 输出集合，重复的元素被自动去掉&#123;&#x27;Zhihu&#x27;, &#x27;Baidu&#x27;, &#x27;Taobao&#x27;, #&#x27;Runoob&#x27;, &#x27;Google&#x27;, &#x27;Facebook&#x27;&#125;</span><br><span class="line"></span><br><span class="line"># 成员测试</span><br><span class="line">if &#x27;Runoob&#x27; in sites :</span><br><span class="line">    print(&#x27;Runoob 在集合中&#x27;)</span><br><span class="line">else :</span><br><span class="line">    print(&#x27;Runoob 不在集合中&#x27;)</span><br><span class="line"></span><br><span class="line"># set可以进行集合运算</span><br><span class="line">a = set(&#x27;abracadabra&#x27;)</span><br><span class="line">b = set(&#x27;alacazam&#x27;)</span><br><span class="line"></span><br><span class="line">print(a)#&#123;&#x27;b&#x27;, &#x27;c&#x27;, &#x27;a&#x27;, &#x27;r&#x27;, &#x27;d&#x27;&#125;</span><br><span class="line"></span><br><span class="line">print(a - b)     # a 和 b 的差集&#123;&#x27;r&#x27;, &#x27;b&#x27;, &#x27;d&#x27;&#125;</span><br><span class="line"></span><br><span class="line">print(a | b)     # a 和 b 的并集&#123;&#x27;b&#x27;, &#x27;c&#x27;, &#x27;a&#x27;, &#x27;z&#x27;, &#x27;m&#x27;, &#x27;r&#x27;, &#x27;l&#x27;, &#x27;d&#x27;&#125;</span><br><span class="line"></span><br><span class="line">print(a &amp; b)     # a 和 b 的交集&#123;&#x27;c&#x27;, &#x27;a&#x27;&#125;</span><br><span class="line"></span><br><span class="line">print(a ^ b)     # a 和 b 中不同时存在的元素&#123;&#x27;z&#x27;, &#x27;b&#x27;, &#x27;m&#x27;, &#x27;r&#x27;, &#x27;l&#x27;, &#x27;d&#x27;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>**Dictionary（字典）:**列表是有序的对象集合，字典是无序的对象集合。两者之间的区别在于：字典当中的元素是通过键来存取的，而不是通过偏移存取。</p>
+<p>字典是一种<strong>映射类型</strong>，字典用 <strong>{ }</strong> 标识，它是一个无序的 <strong>键(key) : 值(value)</strong> 的集合。</p>
+<p><strong>键(key)必须使用不可变类型。在同一个字典中，键(key)必须是唯一的。</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">dict = &#123;&#125;</span><br><span class="line">dict[&#x27;one&#x27;] = &quot;1 - 菜鸟教程&quot;</span><br><span class="line">dict[2]     = &quot;2 - 菜鸟工具&quot;</span><br><span class="line"></span><br><span class="line">tinydict = &#123;&#x27;name&#x27;: &#x27;runoob&#x27;,&#x27;code&#x27;:1, &#x27;site&#x27;: &#x27;www.runoob.com&#x27;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print (dict[&#x27;one&#x27;])       # 输出键为 &#x27;one&#x27; 的值</span><br><span class="line">print (dict[2])           # 输出键为 2 的值</span><br><span class="line">print (tinydict)          # 输出完整的字典</span><br><span class="line">print (tinydict.keys())   # 输出所有键</span><br><span class="line">print (tinydict.values()) # 输出所有值</span><br><span class="line">以上实例输出结果：</span><br><span class="line">1 - 菜鸟教程</span><br><span class="line">2 - 菜鸟工具</span><br><span class="line">&#123;&#x27;name&#x27;: &#x27;runoob&#x27;, &#x27;code&#x27;: 1, &#x27;site&#x27;: &#x27;www.runoob.com&#x27;&#125;</span><br><span class="line">dict_keys([&#x27;name&#x27;, &#x27;code&#x27;, &#x27;site&#x27;])</span><br><span class="line">dict_values([&#x27;runoob&#x27;, 1, &#x27;www.runoob.com&#x27;])</span><br><span class="line">构造函数 dict() 可以直接从键值对序列中构建字典如下：</span><br><span class="line"></span><br><span class="line">实例</span><br><span class="line">&gt;&gt;&gt; dict([(&#x27;Runoob&#x27;, 1), (&#x27;Google&#x27;, 2), (&#x27;Taobao&#x27;, 3)])</span><br><span class="line">&#123;&#x27;Runoob&#x27;: 1, &#x27;Google&#x27;: 2, &#x27;Taobao&#x27;: 3&#125;</span><br><span class="line">&gt;&gt;&gt; &#123;x: x**2 for x in (2, 4, 6)&#125;</span><br><span class="line">&#123;2: 4, 4: 16, 6: 36&#125;</span><br><span class="line">&gt;&gt;&gt; dict(Runoob=1, Google=2, Taobao=3)</span><br><span class="line">&#123;&#x27;Runoob&#x27;: 1, &#x27;Google&#x27;: 2, &#x27;Taobao&#x27;: 3&#125;</span><br><span class="line">&#123;x: x**2 for x in (2, 4, 6)&#125; 该代码使用的是字典推导式，更多推导式内容可以参考：Python 推导式。</span><br><span class="line"></span><br><span class="line">另外，字典类型也有一些内置的函数，例如 clear()、keys()、values() 等。</span><br><span class="line"></span><br><span class="line">注意：</span><br><span class="line"></span><br><span class="line">1、字典是一种映射类型，它的元素是键值对。</span><br><span class="line">2、字典的关键字必须为不可变类型，且不能重复。</span><br><span class="line">3、创建空字典使用 &#123; &#125;。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>bytes类型：</strong>bytes 类型表示的是不可变的二进制序列（byte sequence）。</p>
+<p>与字符串类型不同的是，bytes 类型中的元素是整数值（0 到 255 之间的整数），而不是 Unicode 字符。</p>
+<p>bytes 类型通常用于处理二进制数据，比如图像文件、音频文件、视频文件等等。在网络编程中，也经常使用 bytes 类型来传输二进制数据。</p>
+<p>创建 bytes 对象的方式有多种，最常见的方式是使用 b 前缀：</p>
+<p>此外，也可以使用 bytes() 函数将其他类型的对象转换为 bytes 类型。bytes() 函数的第一个参数是要转换的对象，第二个参数是编码方式，如果省略第二个参数，则默认使用 UTF-8 编码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = bytes(&quot;hello&quot;,encoding = &#x27;utf-8&#x27;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">与字符串类型类似，bytes 类型也支持许多操作和方法，如切片、拼接、查找、替换等等。同时，由于 bytes 类型是不可变的，因此在进行修改操作时需要创建一个新的 bytes 对象。例如：</span><br><span class="line"></span><br><span class="line">实例</span><br><span class="line"></span><br><span class="line">x = b&quot;hello&quot;</span><br><span class="line">y = x[1:3]  # 切片操作，得到 b&quot;el&quot;</span><br><span class="line">z = x + b&quot;world&quot;  # 拼接操作，得到 b&quot;helloworld&quot;</span><br><span class="line">需要注意的是，bytes 类型中的元素是整数值，因此在进行比较操作时需要使用相应的整数值。例如：</span><br><span class="line"></span><br><span class="line">实例</span><br><span class="line">x = b&quot;hello&quot;</span><br><span class="line">if x[0] == ord(&quot;h&quot;):</span><br><span class="line">    print(&quot;The first element is &#x27;h&#x27;&quot;)</span><br><span class="line">其中 ord() 函数用于将字符转换为相应的整数值。</span><br></pre></td></tr></table></figure>
+
+<p>几个内置的函数可以执行数据类型之间的转换。这些函数返回一个新的对象，表示转换的值。</p>
+<table>
+<thead>
+<tr>
+<th align="left">函数</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">[int(x <a target="_blank" rel="noopener" href="https://www.runoob.com/python3/python-func-int.html">,base])</a></td>
+<td align="left">将x转换为一个整数</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/python3/python-func-float.html">float(x)</a></td>
+<td align="left">将x转换到一个浮点数</td>
+</tr>
+<tr>
+<td align="left">[complex(real <a target="_blank" rel="noopener" href="https://www.runoob.com/python3/python-func-complex.html">,imag])</a></td>
+<td align="left">创建一个复数</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/python3/python-func-str.html">str(x)</a></td>
+<td align="left">将对象 x 转换为字符串</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/python3/python-func-repr.html">repr(x)</a></td>
+<td align="left">将对象 x 转换为表达式字符串</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/python3/python-func-eval.html">eval(str)</a></td>
+<td align="left">用来计算在字符串中的有效Python表达式,并返回一个对象</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/python3/python3-func-tuple.html">tuple(s)</a></td>
+<td align="left">将序列 s 转换为一个元组</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/python3/python3-att-list-list.html">list(s)</a></td>
+<td align="left">将序列 s 转换为一个列表</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/python3/python-func-set.html">set(s)</a></td>
+<td align="left">转换为可变集合</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/python3/python-func-dict.html">dict(d)</a></td>
+<td align="left">创建一个字典。d 必须是一个 (key, value)元组序列。</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/python3/python-func-frozenset.html">frozenset(s)</a></td>
+<td align="left">转换为不可变集合</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/python3/python-func-chr.html">chr(x)</a></td>
+<td align="left">将一个整数转换为一个字符</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/python3/python-func-ord.html">ord(x)</a></td>
+<td align="left">将一个字符转换为它的整数值</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/python3/python-func-hex.html">hex(x)</a></td>
+<td align="left">将一个整数转换为一个十六进制字符串</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.runoob.com/python3/python-func-oct.html">oct(x)</a></td>
+<td align="left">将一个整数转换为一个八进制字符串</td>
+</tr>
+</tbody></table>
+<h3 id="1-3数据类型转换"><a href="#1-3数据类型转换" class="headerlink" title="1.3数据类型转换"></a>1.3数据类型转换</h3><p>数据类型转换可以分为两种：</p>
+<ul>
+<li>隐式类型转换 - 自动完成</li>
+<li>显式类型转换 - 需要使用类型函数来转换</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://example.com">zy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://example.com/2025/09/12/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">http://example.com/2025/09/12/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">zy</div><div class="author-info-description">等风来不如追风去</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Python%E8%AF%AD%E6%B3%95%E5%A4%8D%E4%B9%A0"><span class="toc-number">1.</span> <span class="toc-text">Python语法复习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">1基础语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1基础语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2基本数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3数据类型转换</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/09/12/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" title="我的第一篇文章">我的第一篇文章</a><time datetime="2025-09-12T03:36:50.000Z" title="Created 2025-09-12 11:36:50">2025-09-12</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By zy</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.0</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+    function butterfly_categories_card_injector_config(){
+      var parent_div_git = document.getElementById('recent-posts');
+      var item_html = '<style>li.categoryBar-list-item{width:32.3%;}.categoryBar-list{max-height: 190px;overflow:auto;}.categoryBar-list::-webkit-scrollbar{width:0!important}@media screen and (max-width: 650px){.categoryBar-list{max-height: 160px;}}</style><div class="recent-post-item" style="height:auto;width:100%;padding:0px;"><div id="categoryBar"><ul class="categoryBar-list"></ul></div></div>';
+      console.log('已挂载butterfly_categories_card')
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+      }
+    if( document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    butterfly_categories_card_injector_config()
+    }
+  </script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body></html>
