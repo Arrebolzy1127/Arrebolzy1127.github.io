@@ -1,0 +1,300 @@
+<!DOCTYPE html><html lang="zh-Hans" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>深度学习第三节（使用Pytorch构建神经网络） | zy de 小破站</title><meta name="author" content="zy"><meta name="copyright" content="zy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="深度学习第三节（使用Pytorch构建神经网络）神经网络通常包括输入层、隐藏层、输出层、激活函数、损失函数和学习率等基本组件。本节介绍在简单数据集上使用pytorch构建神经网络，利用张量对象操作和梯度值计算更新网络权重。 1.pytroch构建神经网络​	解决两个数字的相加问题 1.初始化数据集 123import torchx &#x3D; [[1,2],[3,4],[5,6],[7,8]]y &#x3D; [[">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深度学习第三节（使用Pytorch构建神经网络）">
+<meta property="og:url" content="http://example.com/2025/09/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%89%E8%8A%82%EF%BC%88%E4%BD%BF%E7%94%A8Pytorch%E6%9E%84%E5%BB%BA%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%89/index.html">
+<meta property="og:site_name" content="zy de 小破站">
+<meta property="og:description" content="深度学习第三节（使用Pytorch构建神经网络）神经网络通常包括输入层、隐藏层、输出层、激活函数、损失函数和学习率等基本组件。本节介绍在简单数据集上使用pytorch构建神经网络，利用张量对象操作和梯度值计算更新网络权重。 1.pytroch构建神经网络​	解决两个数字的相加问题 1.初始化数据集 123import torchx &#x3D; [[1,2],[3,4],[5,6],[7,8]]y &#x3D; [[">
+<meta property="og:locale">
+<meta property="og:image" content="http://example.com/img/butterfly-icon.png">
+<meta property="article:published_time" content="2025-09-13T09:01:40.000Z">
+<meta property="article:modified_time" content="2025-09-13T09:01:58.411Z">
+<meta property="article:author" content="zy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "深度学习第三节（使用Pytorch构建神经网络）",
+  "url": "http://example.com/2025/09/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%89%E8%8A%82%EF%BC%88%E4%BD%BF%E7%94%A8Pytorch%E6%9E%84%E5%BB%BA%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%89/",
+  "image": "http://example.com/img/butterfly-icon.png",
+  "datePublished": "2025-09-13T09:01:40.000Z",
+  "dateModified": "2025-09-13T09:01:58.411Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "zy",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2025/09/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%89%E8%8A%82%EF%BC%88%E4%BD%BF%E7%94%A8Pytorch%E6%9E%84%E5%BB%BA%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%89/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '深度学习第三节（使用Pytorch构建神经网络）',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/modify.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-categories-card@1.0.0/lib/categorybar.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(https://images.unsplash.com/photo-1529778873920-4da4926a72c2?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80);"></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">zy de 小破站</span></a><a class="nav-page-title" href="/"><span class="site-name">深度学习第三节（使用Pytorch构建神经网络）</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">深度学习第三节（使用Pytorch构建神经网络）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-09-13T09:01:40.000Z" title="Created 2025-09-13 17:01:40">2025-09-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-09-13T09:01:58.411Z" title="Updated 2025-09-13 17:01:58">2025-09-13</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="深度学习第三节（使用Pytorch构建神经网络）"><a href="#深度学习第三节（使用Pytorch构建神经网络）" class="headerlink" title="深度学习第三节（使用Pytorch构建神经网络）"></a>深度学习第三节（使用Pytorch构建神经网络）</h1><p>神经网络通常包括输入层、隐藏层、输出层、激活函数、损失函数和学习率等基本组件。本节介绍在简单数据集上使用pytorch构建神经网络，利用张量对象操作和梯度值计算更新网络权重。</p>
+<h2 id="1-pytroch构建神经网络"><a href="#1-pytroch构建神经网络" class="headerlink" title="1.pytroch构建神经网络"></a>1.pytroch构建神经网络</h2><p>​	解决两个数字的相加问题</p>
+<p>1.初始化数据集</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line">x = [[1,2],[3,4],[5,6],[7,8]]</span><br><span class="line">y = [[3],[7],[5],[11]]</span><br></pre></td></tr></table></figure>
+
+<p>2.将输入列表转换为张量对象,并转换为浮点对象，此外将输入X和输出Y数据点注册到device中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">X = torch.tensor(x).float()</span><br><span class="line">Y = torch.tensor(y).float()</span><br><span class="line"></span><br><span class="line">device = &#x27;cuda&#x27; if torch.cuda.is_available else &#x27;cpu&#x27;</span><br><span class="line">X = X.to(device)</span><br><span class="line">Y = Y.to(device)</span><br></pre></td></tr></table></figure>
+
+<p>3.定义神经网络架构，导入torch.nn模块用于构建神经网络模型，创建MyNeuralNet，继承自nn.Module，nn.Module是所有神经网络模块的基类</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">from torch import nn</span><br><span class="line">class MyNeuralNet(nn.Module):</span><br><span class="line">	def __init__(self):</span><br><span class="line">		super().__init__()</span><br><span class="line">		</span><br><span class="line">		#定义神经网络中的网络层</span><br><span class="line">		self.input_to_hidden_layer = nn.Linear(2,8)</span><br><span class="line">		#全连接层以2个值作为输入并输出8个值，且包含与之关联的偏置参数</span><br><span class="line">		self.hidden_layer_activation = nn.ReLU()</span><br><span class="line">		self.hidden_to_output_layer = nn.Linear(8,1)</span><br></pre></td></tr></table></figure>
+
+<p>注释：使用__<code>init</code>__方法初始化神经网络的所有组件，调用<code>super().__init__()</code>可以利用nn.Module编写的所有预构建函数，初始化的组件将用于MyNeuraNet类中的不同方法。全连接层（self.input_to_hidden_layer），使用ReLU激活函数的隐藏层（self.hidden_layer_activation），最后也是一个全连接层（self.hidden_to_output_layer）</p>
+<p>4.将初始化的神经网络组件连接在一起，并定义网络的前向传播方法forward：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def forward(self,x):</span><br><span class="line">	x = self.input_to_hidden_layer(x)</span><br><span class="line">	x = self.hidden_layer_activation(x)</span><br><span class="line">	x = self.hidden_to_output_layer(x)</span><br><span class="line">	return x</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：必须使用forward作为前向传播的函数名，因为Pytorch保留此函数作为执行前向传播的方法，使用其他名称都会引发错误。</strong></p>
+<p>5.执行以下代码访问每个深井网络组件的初始权重</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#创建MyNeuralNet对象的实例并将其注册到device</span><br><span class="line">mynet = MyNeuralNet().to(device)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">print(mynet.input_to_hidden_layer.weight)</span><br><span class="line">#类似代码可以访问每一层的权重和偏置</span><br><span class="line">#Parameter containing:</span><br><span class="line">#tensor([[-0.4344,  0.3873],</span><br><span class="line">        [ 0.3148,  0.6663],</span><br><span class="line">        [ 0.5689, -0.5287],</span><br><span class="line">        [-0.6481,  0.1600],</span><br><span class="line">        [ 0.1827, -0.1818],</span><br><span class="line">        [-0.6489,  0.0926],</span><br><span class="line">        [ 0.1215,  0.4913],</span><br><span class="line">        [ 0.2923, -0.6248]], device=&#x27;cuda:0&#x27;, requires_grad=True)</span><br><span class="line">#每次执行时输出的值并不相同，因为神经网络每次都使用随机值进行初始化，如果希望在执行相同代码时保持相同输出，需要在创建类对象的实例之前使用Torch中的manual_seed方法指定随机种子，torch.manual_seed(0)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">mynet.parameters()</span><br><span class="line">#可以获得神经网络的所有参数，会返回一个生成器，通过生成器循环获取参数</span><br><span class="line">for param in mynet.parameters():</span><br><span class="line">	print(param)</span><br><span class="line"></span><br><span class="line">#代码结果如下：</span><br><span class="line">Parameter containing:</span><br><span class="line">tensor([[-0.1700,  0.1255],</span><br><span class="line">        [-0.6442, -0.0863],</span><br><span class="line">        [ 0.0079, -0.1979],</span><br><span class="line">        [-0.3271, -0.3621],</span><br><span class="line">        [-0.5230,  0.5031],</span><br><span class="line">        [-0.6461, -0.5630],</span><br><span class="line">        [ 0.3262, -0.0498],</span><br><span class="line">        [ 0.3311,  0.3402]], device=&#x27;cuda:0&#x27;, requires_grad=True)</span><br><span class="line">Parameter containing:</span><br><span class="line">tensor([ 0.0449,  0.5957, -0.0974,  0.3396,  0.2025,  0.6109, -0.4293, -0.0846],</span><br><span class="line">       device=&#x27;cuda:0&#x27;, requires_grad=True)</span><br><span class="line">Parameter containing:</span><br><span class="line">tensor([[ 0.3228,  0.2529,  0.3183, -0.2758,  0.2793, -0.0019, -0.2335,  0.3072]],</span><br><span class="line">       device=&#x27;cuda:0&#x27;, requires_grad=True)</span><br><span class="line">Parameter containing:</span><br><span class="line">tensor([0.0602], device=&#x27;cuda:0&#x27;, requires_grad=True)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>该模型已经将张量注册为跟踪前向和反向传播所必须的特殊对象，在init初始化方法中定义nn神经网络层时会自动创建相应的张量并进行注册，也可以使用nn.parameter(<tensor>)函数手动注册这些参数。等价于如下代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class MyNeuralNet(nn.module):</span><br><span class="line">	def __init__(self):</span><br><span class="line">		super().__init__()</span><br><span class="line">		self.input_to_hidden_layer = nn.parameter(torch.rand(2,8))</span><br><span class="line">		self.hidden_layer_activation = nn.ReLU()</span><br><span class="line">		self.hidden_to_output_layer = nn.parameter(torch.rand(8,1))</span><br><span class="line">	def forward(self,x):</span><br><span class="line">		x = x @ self.input_to_hidden_layer</span><br><span class="line">		x = self.hidden_layer_activation(x)</span><br><span class="line">		x = x @ self.hidden_to_output_layer</span><br><span class="line">		return x</span><br></pre></td></tr></table></figure>
+
+<p>6.定义损失函数，由于需要预测连续输出，因此使用均方误差作为损失函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">loss_func = nn.MSELoss()</span><br></pre></td></tr></table></figure>
+
+<p>通过将输入值传递给神经网络对象，然后计算给定输入的损失函数值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">_Y = mynet(X)</span><br><span class="line">#根据给定输入通过神经网络计算输出值</span><br><span class="line"></span><br><span class="line">loss_value = loss_func(_Y,Y)</span><br><span class="line">#计算MSELoss值，注意在计算损失时，我们总是先传入预测结果，然后传入实际标记值</span><br><span class="line"></span><br><span class="line">print(loss_value)</span><br><span class="line">#tensor(33.2581, device=&#x27;cuda:0&#x27;, grad_fn=&lt;MseLossBackward0&gt;)</span><br></pre></td></tr></table></figure>
+
+<p>7.定义降低损失值的优化器，优化器的输入是与神经网络相对应的参数（权重和偏差）以及更新权重时的学习率。本节我们使用随机梯度下降（SGD）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from torch.optim import SGD</span><br><span class="line">opt = SGD(mynet.parameters(),lr = 0.001)</span><br></pre></td></tr></table></figure>
+
+<p>8.训练</p>
+<p>​	训练神经网络的标准套路，每个epoch都会<strong>清空梯度 → 前向传播算预测 → 算 loss → 反向传播算梯度 → 用优化器更新参数</strong>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#一个epoch</span><br><span class="line">opt.zero_grad()</span><br><span class="line">#清除掉上一次训练时累积的梯度值，PyTorch 默认梯度是累加的（因为有时候需要多次backward() 再合并更新），所以每一轮训练之前都要把梯度清零，否则梯度会“越积越多”，参数更新就会出问题。</span><br><span class="line"></span><br><span class="line">loss_value = loss_func(mynet(X),Y)</span><br><span class="line">#先用 mynet(X) 把输入数据跑一遍，得到预测值。然后拿预测值和真实标签 Y 做对比，算出误差（loss）。</span><br><span class="line"></span><br><span class="line">loss_value.backward()</span><br><span class="line">#自动求导，计算每个参数的梯度</span><br><span class="line"></span><br><span class="line">opt.step()</span><br><span class="line">#用刚才算好的梯度去更新参数。更新方式取决于优化器（比如 SGD, Adam），它会按公式调整权重，让 loss 变小。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#使用for循环重复执行上述步骤，执行50个epoch，此外loss_history列表存储每个epoch中的损失值。</span><br><span class="line">loss_history = []</span><br><span class="line">for _ in range(50):</span><br><span class="line">	opt.zero_grad()</span><br><span class="line">	loss_value = loss_func(mynet(X),Y)</span><br><span class="line">	loss_value.backward()</span><br><span class="line">	opt.step()</span><br><span class="line">	loss_history.append(loss_value.item())</span><br></pre></td></tr></table></figure>
+
+<p>9.绘制损失随epoch的变化情况</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">plt.plot(loss_history)</span><br><span class="line">plt.title(&#x27;Loss Variation over increasing epochs&#x27;)</span><br><span class="line">plt.xlabel(&#x27;epochs&#x27;)</span><br><span class="line">plt.ylabel(&#x27;loss value&#x27;)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<img src="http://t2h44ecnh.hn-bkt.clouddn.com/test/image-20250913143328966.png" alt="image-20250913143328966" style="zoom: 33%;" />
+
+<h2 id="2-神经网络数据加载"><a href="#2-神经网络数据加载" class="headerlink" title="2.神经网络数据加载"></a>2.神经网络数据加载</h2><p>​	批大小（batch size）是神经网络中重要的超参数，批大小是指计算损失值或更新权重时考虑的数据样本数。假设数据集中有数百万个数据样本，一次将所有数据点用于一次权重更新并非最佳选择，因为内存可能无法容纳如此多数据。</p>
+<p>1.导入加载数据和处理数据集的方法，导入数据将数据转换为浮点数，并将他们注册到相应设备中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">from torch.utils.data import Dataset,DataLoader</span><br><span class="line">import torch</span><br><span class="line">import torch.nn as nn</span><br><span class="line"></span><br><span class="line">x = [[1,2],[3,4],[5,6],[7,8]]</span><br><span class="line">y = [[3],[7],[11],[15]]</span><br><span class="line">X = torch.tensor(x).float()</span><br><span class="line">Y = torch.tensor(y).float()</span><br><span class="line"></span><br><span class="line">device = &#x27;cuda&#x27; if torch.cuda.is_available() else &#x27;cpu&#x27;</span><br><span class="line">X = X.to(device)</span><br><span class="line">Y = Y.to(device)</span><br></pre></td></tr></table></figure>
+
+<p>2.创建数据集类MyDataset：</p>
+<p>​	Dataset的三个方法：<strong>init</strong>(self,x,y)，<strong>len</strong>(self)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class MyDataset(Dataset):</span><br><span class="line">	#存储数据信息以便可以将一批（batch）数据点捆绑在一起（使用DataLoader），并通过一次前向和反向传播更新权重。</span><br><span class="line">	</span><br><span class="line">	#接受输入和输出</span><br><span class="line">	def __init__(self,x,y):</span><br><span class="line">		self.x = x.clone().detach()</span><br><span class="line">		#避免梯度信息污染数据集</span><br><span class="line">		self.y = y.clone().detach()</span><br><span class="line">		</span><br><span class="line">	#指定输入数据集的长度(__len__)，（样本数）</span><br><span class="line">	def __len__(self):</span><br><span class="line">		return len(self.x)</span><br><span class="line">		</span><br><span class="line">	#getitem方法用于获取指定数据样本</span><br><span class="line">	def __getitem__(self,ix):</span><br><span class="line">		return self.x[ix],self.y[ix]</span><br><span class="line">		#ix表示要从数据集获取的数据索引，（输入+标签）</span><br></pre></td></tr></table></figure>
+
+<p>3.创建自定义类的实例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ds = MyDataset(X,Y)</span><br></pre></td></tr></table></figure>
+
+<p>4.通过DataLoader传递数据集实例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dl = DataLoader(ds,batch_size=2,shuffle=True)</span><br></pre></td></tr></table></figure>
+
+<p>​	指定从ds输入数据集中获取两个（batch_size&#x3D;2）的随机样本（shuffle&#x3D;True）数据点。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">for x,y in dl:</span><br><span class="line">	print(x,y)</span><br><span class="line">#输出</span><br><span class="line">#tensor([[5., 6.],</span><br><span class="line">        [1., 2.]], device=&#x27;cuda:0&#x27;) tensor([[5.],</span><br><span class="line">        [3.]], device=&#x27;cuda:0&#x27;)</span><br><span class="line">tensor([[3., 4.],</span><br><span class="line">        [7., 8.]], device=&#x27;cuda:0&#x27;) tensor([[ 7.],</span><br><span class="line">        [11.]], device=&#x27;cuda:0&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>​	生成两组输入-输出，因为原始数据集中共有4个数据点，而指定的批大小为2</p>
+<p>5.定义神经网络类</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class MyNeuralNet(nn.Module):</span><br><span class="line">	def __init__(self):</span><br><span class="line">		super().__init__()</span><br><span class="line">		self.input_to_hidden_layer = nn.Linear(2,8)</span><br><span class="line">		self.hidden_layer_activation = nn.ReLU()</span><br><span class="line">		self.hidden_to_output_layer = nn.Linear(8,1)</span><br><span class="line">	def forward(self,x):</span><br><span class="line">		x = self.input_to_hidden_layer(x)</span><br><span class="line">		x = self.hidden_layer_activation(x)</span><br><span class="line">		x = self.hidden_to_output_layer(x)</span><br><span class="line">		return x</span><br></pre></td></tr></table></figure>
+
+<p>6.定义模型对象（mynet），损失函数（loss_func)和优化器（opt）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mynet = MyNeuralNet().to(device)</span><br><span class="line">loss_func = nn.MSELoss()</span><br><span class="line"></span><br><span class="line">from torch.optim import SGD</span><br><span class="line">opt = SGD(mynet.parameters(),lr = 0.001)</span><br></pre></td></tr></table></figure>
+
+<p>7.循环遍历批数据点以最小化损失值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import time</span><br><span class="line">loss_history = []</span><br><span class="line">start = time.time()</span><br><span class="line">for _ in range(50):</span><br><span class="line">	for data in dl:</span><br><span class="line">		x,y = data</span><br><span class="line">		opt.zero_grad()</span><br><span class="line">		loss_value = loss_func(mynet(x),y)</span><br><span class="line">		loss_value.backward()</span><br><span class="line">		opt.step()</span><br><span class="line">		loss_history.append(loss_value.item())</span><br><span class="line">end = time.time()</span><br><span class="line">print(end-start)</span><br><span class="line">#0.31676459312438965</span><br></pre></td></tr></table></figure>
+
+<p>与上一节相比，每个epoch更新权重的次数是原来的2倍，因为本节中使用的批大小是2，而上一节批大小为4，即以此使用全部数据点。</p>
+<h3 id="2-1模型测试"><a href="#2-1模型测试" class="headerlink" title="2.1模型测试"></a>2.1模型测试</h3><p>​	前面是如何在已知数据点上拟合数据，接下来介绍如何利用前面训练好的mynet模型中定义的前向传播方法来预测模型没有见过的数据点（测试数据）。</p>
+<p>1.创建用于测试模型的数据点，并且将新数据点转换为张量浮点对象并注册到device中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">val_x = [[10,11]]</span><br><span class="line">val_x = torch.tensor(val_x).float().to(device)</span><br></pre></td></tr></table></figure>
+
+<p>2.通过训练好的神经网络（mynet）传递张量对象，与通过模型执行前向传播的方法相同：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(mynet(val_x))</span><br><span class="line">#tensor([[20.9521]], device=&#x27;cuda:0&#x27;, grad_fn=&lt;AddmmBackward0&gt;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2获取中间层的值"><a href="#2-2获取中间层的值" class="headerlink" title="2.2获取中间层的值"></a>2.2获取中间层的值</h3><p>​	在实际应用中，可能需要获取神经网络的中间层值，例如风格迁移和迁移学习等。pytorch提供了两种方式。</p>
+<p>1.直接调用神经网络层，当成函数使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(mynet.hidden_layer_activation(mynet.input_to_hidden_layer(X)))</span><br></pre></td></tr></table></figure>
+
+<p>注意：必须按照模型输入、输出顺序调用相应神经网络层。input_to_hidden_layer的输出是hidden_layer_activation的输入。</p>
+<p>2.forward方法指明想要查看的网络层</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class MyNeuralNet(nn.Module):</span><br><span class="line">	def __init__(self):</span><br><span class="line">		super().__init__()</span><br><span class="line">		self.input_to_hidden_layer = nn.Linear(2,8)</span><br><span class="line">		self.hidden_layer_activation = nn.ReLU()</span><br><span class="line">		self.hidden_to_output_layer = nn.Linear(8,1)</span><br><span class="line">	def forward(self,x):</span><br><span class="line">		hidden1 = self.input_to_hidden_layer(x)</span><br><span class="line">		hidden2 = self.hidden_layer_activation(hidden1)</span><br><span class="line">		x = self.hidden_to_output_layer(hidden2)</span><br><span class="line">		return x,hidden2</span><br></pre></td></tr></table></figure>
+
+<p>通过以下代码访问隐藏层值，mynet的第0个索引输出的是网络前向传播的最终输出，而第一个索引输出的是隐藏层激活后的值。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(mynet(X)[1])</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-使用Sequential类构建神经网络"><a href="#3-使用Sequential类构建神经网络" class="headerlink" title="3.使用Sequential类构建神经网络"></a>3.使用Sequential类构建神经网络</h2><p>​	除非需要构建一个复杂的网络，否则只需要利用Sequential类并指定层与层堆叠的顺序即可搭建神经网络。本节继续使用简单数据集训练神经网络。</p>
+<p>1.导入相关的库，定义使用的设备，定义数据集与数据集类（MyDataset）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line">import torch.nn as nn</span><br><span class="line">import numpy as np</span><br><span class="line">from torch.utils.data import Dataset,DataLoader</span><br><span class="line">device = &#x27;cuda&#x27; if torch.cuda.is_available() else &#x27;cpu&#x27;</span><br><span class="line"></span><br><span class="line">x = [[1,2],[3,4],[5,6],[7,8]]</span><br><span class="line">y = [[3],[7],[11],[15]]</span><br><span class="line"></span><br><span class="line">class MyDataset(Dataset):</span><br><span class="line">	def __init__(self,x,y):</span><br><span class="line">		self.x = torch.tensor(x).float().to(device)</span><br><span class="line">		self.y = torch.tensor(y).float().to(device)</span><br><span class="line">	def __len__(self):</span><br><span class="line">		return len(self.x)</span><br><span class="line">	def __getitem__(self,ix):</span><br><span class="line">		return self.x[ix],self.y[ix]</span><br></pre></td></tr></table></figure>
+
+<p>2.定义数据集ds和数据加载对象dl</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ds = MyDataset(x,y)</span><br><span class="line">dl = DataLoader(ds,batch_size = 2,shuffle = True)</span><br></pre></td></tr></table></figure>
+
+<p>3.使用nn模块中的Sequential类定义模型架构：</p>
+<p>​	nn,Linear接受二维输入并为每个数据点提供八维输出，nn.ReLU在八维输出之上执行ReLU激活。最后使用nn.Linear接受八维输入并得到一维输出。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">model = nn.Sequential(</span><br><span class="line">	nn.Linear(2,8),</span><br><span class="line">	nn.ReLU(),</span><br><span class="line">	nn.Linear(8,1)</span><br><span class="line">).to(device)</span><br></pre></td></tr></table></figure>
+
+<p>4.打印模型的摘要summary，查看模型架构信息</p>
+<p>需要安装torchsummary库，pip install torchsummary</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">from torchsummary import summary</span><br><span class="line"></span><br><span class="line">print(summart(model,(2,))</span><br><span class="line">#打印模型摘要，函数接受模型名称以及模型输入大小（需要使用整数元组）作为参数</span><br><span class="line"></span><br><span class="line">#结果如下</span><br><span class="line">----------------------------------------------------------------</span><br><span class="line">        Layer (type)               Output Shape         Param #</span><br><span class="line">================================================================</span><br><span class="line">            Linear-1                    [-1, 8]              24</span><br><span class="line">              ReLU-2                    [-1, 8]               0</span><br><span class="line">            Linear-3                    [-1, 1]               9</span><br><span class="line">================================================================</span><br><span class="line">Total params: 33</span><br><span class="line">Trainable params: 33</span><br><span class="line">Non-trainable params: 0</span><br><span class="line">----------------------------------------------------------------</span><br><span class="line">Input size (MB): 0.00</span><br><span class="line">Forward/backward pass size (MB): 0.00</span><br><span class="line">Params size (MB): 0.00</span><br><span class="line">Estimated Total Size (MB): 0.00</span><br><span class="line">----------------------------------------------------------------</span><br><span class="line">None</span><br></pre></td></tr></table></figure>
+
+<p>以第一层输出为例，形状为（-1，8），其中-1表示batch size，8表示对于每个数据点都会得到一个8维输出，得到形状为batch size×8的输出。</p>
+<p>5.接下来定义损失函数loss_func和优化器opt并训练模型</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">loss_func = nn.MSELoss()</span><br><span class="line">from torch.optim import SGD</span><br><span class="line"></span><br><span class="line">opt = SGD(model.parameters(),lr = 0.001)</span><br><span class="line"></span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">loss_history = []</span><br><span class="line">start = time.time()</span><br><span class="line">for _ in range(50):</span><br><span class="line">	for ix,iy in dl:</span><br><span class="line">		opt.zero_grad()</span><br><span class="line">		loss_value = loss_func(model(ix),iy)</span><br><span class="line">		loss_value.backward()</span><br><span class="line">		opt.step()</span><br><span class="line">		loss_history.append(loss_value.item())</span><br><span class="line">end = time.time()</span><br><span class="line">print(end-start)</span><br><span class="line">#0.18243002891540527</span><br></pre></td></tr></table></figure>
+
+<p>6.训练模型后，在验证数据集上预测值</p>
+<p>定义预测数据集：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">val = [[8,9],[10,11],[1.5,2.5]]</span><br></pre></td></tr></table></figure>
+
+<p>将验证数据转换为浮点数并转换为张量对象存储到device中，模型传递验证数据预测输出</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">val = torch.tensor(val).float()</span><br><span class="line">print(model(val.to(device)))</span><br><span class="line"></span><br><span class="line">#结果为</span><br><span class="line">#tensor([[16.8575],</span><br><span class="line">        [20.7629],</span><br><span class="line">        [ 4.1649]], device=&#x27;cuda:0&#x27;, grad_fn=&lt;AddmmBackward0&gt;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-pytorch模型的保存与加载"><a href="#4-pytorch模型的保存与加载" class="headerlink" title="4.pytorch模型的保存与加载"></a>4.pytorch模型的保存与加载</h2><p>​	神经网络处理的一个重要方面就是在训练后保存和加载模型，保存模型之后，我们可以利用已经训练好的模型进行推断，只需要加载已经训练好的模型，而无需再次对其进行训练。</p>
+<h3 id="4-1模型保存所需组件"><a href="#4-1模型保存所需组件" class="headerlink" title="4.1模型保存所需组件"></a>4.1模型保存所需组件</h3><p><img src="http://t2h44ecnh.hn-bkt.clouddn.com/test/image-20250913164641777.png" alt="image-20250913164641777"></p>
+<h3 id="4-2模型状态"><a href="#4-2模型状态" class="headerlink" title="4.2模型状态"></a>4.2模型状态</h3><p><img src="http://t2h44ecnh.hn-bkt.clouddn.com/test/image-20250913164817839.png" alt="image-20250913164817839"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">print(model.state_dict())</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">OrderedDict([(&#x27;0.weight&#x27;, tensor([[ 0.8770,  0.1810],</span><br><span class="line">        [-0.2726, -0.5457],</span><br><span class="line">        [-0.3269, -0.5528],</span><br><span class="line">        [ 0.5133, -0.3993],</span><br><span class="line">        [ 0.6862,  0.6442],</span><br><span class="line">        [ 0.1152, -0.6341],</span><br><span class="line">        [ 0.3632, -0.3292],</span><br><span class="line">        [-0.1101,  0.1117]], device=&#x27;cuda:0&#x27;)), (&#x27;0.bias&#x27;, tensor([-0.0707, -0.0403, -0.1827, -0.5141,  0.2934,  0.6227, -0.3822, -0.3792],</span><br><span class="line">       device=&#x27;cuda:0&#x27;)), (&#x27;2.weight&#x27;, tensor([[ 0.6465, -0.2204, -0.2875, -0.1880,  0.9614, -0.1798,  0.0300, -0.2467]],</span><br><span class="line">       device=&#x27;cuda:0&#x27;)), (&#x27;2.bias&#x27;, tensor([0.2132], device=&#x27;cuda:0&#x27;))])</span><br><span class="line">&quot;&quot;&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3模型保存"><a href="#4-3模型保存" class="headerlink" title="4.3模型保存"></a>4.3模型保存</h3><p><img src="http://t2h44ecnh.hn-bkt.clouddn.com/test/image-20250913165023651.png" alt="image-20250913165023651"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">save_path = &#x27;mymodel.pth&#x27;</span><br><span class="line">torch.save(model.state_dict(),save_path)</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-4模型加载"><a href="#4-4模型加载" class="headerlink" title="4.4模型加载"></a>4.4模型加载</h3><p>​	<strong>加载模型首先需要初始化模型，然后从state_dict加载权重</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line">from torch import nn</span><br><span class="line">device = &#x27;cuda&#x27; if torch.cuda.is_available() else &#x27;cpu&#x27;</span><br><span class="line"></span><br><span class="line">model = nn.Sequential(</span><br><span class="line">	nn.Linear(2,8),</span><br><span class="line">	nn.ReLU(),</span><br><span class="line">	nn.Linear(8,1)</span><br><span class="line">).to(device)</span><br><span class="line">#使用与训练时相同的代码创建一个空模型</span><br><span class="line"></span><br><span class="line">state_dict = torch.load(&#x27;mymodel.pth&#x27;)</span><br><span class="line">#从磁盘加载模型并反序列化以创建一个OrderedDict值</span><br><span class="line"></span><br><span class="line">model.load_state_dict(state_dict)</span><br><span class="line">model.to(device)</span><br><span class="line">#加载state_dict到模型中，并将其注册到device中，执行预测任务</span><br><span class="line"></span><br><span class="line">val = [[8,9],[10,11],[1.5,2.5]]</span><br><span class="line">val = torch.tensor(val).float()</span><br><span class="line">print(model(val.to(device)))</span><br><span class="line">#输出</span><br><span class="line">#tensor([[16.7941],</span><br><span class="line">        [20.6560],</span><br><span class="line">        [ 4.2427]], device=&#x27;cuda:0&#x27;, grad_fn=&lt;AddmmBackward0&gt;)</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://example.com">zy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://example.com/2025/09/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%89%E8%8A%82%EF%BC%88%E4%BD%BF%E7%94%A8Pytorch%E6%9E%84%E5%BB%BA%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%89/">http://example.com/2025/09/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%89%E8%8A%82%EF%BC%88%E4%BD%BF%E7%94%A8Pytorch%E6%9E%84%E5%BB%BA%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%89/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/09/12/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%8C%E8%8A%82%EF%BC%88%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%EF%BC%89/" title="深度学习第二节（神经网络与模型训练过程）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">深度学习第二节（神经网络与模型训练过程）</div></div><div class="info-2"><div class="info-item-1">深度学习第二节（神经网络与模型训练过程）1.人工神经网络基础​	ANN是张量（权重，weights）和数学运算的集合，将一个或者多个张量作为输入并预测相应输出。将输入连接到输出的操作方式称为神经网络的架构，我们可以根据不同的任务构建不同架构，即基于问题是包含结构化数据还是非结构化数据（图像、文本、语言）数据，这些数据就是输入和输出张量的列表。ANN由以下部分组成： ​	输入层：将自变量作为输入 ​	隐藏层：连接输入和输出，在输入数据之上进行转换；此外，隐藏层利用节点单元将输入值修改为更高&#x2F;更低维的值；通过修改中间节点的激活函数可以实现复杂表示函数。 ​	输出层：输入变量产生的值，取决于实际任务以及我们是在尝试预测连续变量还是分类变量。如果输出是连续变量，则输出有一个节点。如果输出是具有m个可能类别的分类，则输出有m个节点 典型结构为： 1.1神经网络的训练​	训练神经网络实际上是通过重复两个关键步骤来调整神经网络中的权重：前向传播和反向传播。 1.在前向传播中，我们将一组权重应用与输入数据，将其传递给隐藏层，对隐藏层计算后的输出使用非线性激活，通过若干个隐藏层后，将最后...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">zy</div><div class="author-info-description">等风来不如追风去</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%89%E8%8A%82%EF%BC%88%E4%BD%BF%E7%94%A8Pytorch%E6%9E%84%E5%BB%BA%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">深度学习第三节（使用Pytorch构建神经网络）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-pytroch%E6%9E%84%E5%BB%BA%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-number">1.1.</span> <span class="toc-text">1.pytroch构建神经网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%95%B0%E6%8D%AE%E5%8A%A0%E8%BD%BD"><span class="toc-number">1.2.</span> <span class="toc-text">2.神经网络数据加载</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1%E6%A8%A1%E5%9E%8B%E6%B5%8B%E8%AF%95"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1模型测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2%E8%8E%B7%E5%8F%96%E4%B8%AD%E9%97%B4%E5%B1%82%E7%9A%84%E5%80%BC"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2获取中间层的值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E4%BD%BF%E7%94%A8Sequential%E7%B1%BB%E6%9E%84%E5%BB%BA%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-number">1.3.</span> <span class="toc-text">3.使用Sequential类构建神经网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-pytorch%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BF%9D%E5%AD%98%E4%B8%8E%E5%8A%A0%E8%BD%BD"><span class="toc-number">1.4.</span> <span class="toc-text">4.pytorch模型的保存与加载</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1%E6%A8%A1%E5%9E%8B%E4%BF%9D%E5%AD%98%E6%89%80%E9%9C%80%E7%BB%84%E4%BB%B6"><span class="toc-number">1.4.1.</span> <span class="toc-text">4.1模型保存所需组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2%E6%A8%A1%E5%9E%8B%E7%8A%B6%E6%80%81"><span class="toc-number">1.4.2.</span> <span class="toc-text">4.2模型状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3%E6%A8%A1%E5%9E%8B%E4%BF%9D%E5%AD%98"><span class="toc-number">1.4.3.</span> <span class="toc-text">4.3模型保存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4%E6%A8%A1%E5%9E%8B%E5%8A%A0%E8%BD%BD"><span class="toc-number">1.4.4.</span> <span class="toc-text">4.4模型加载</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/09/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%89%E8%8A%82%EF%BC%88%E4%BD%BF%E7%94%A8Pytorch%E6%9E%84%E5%BB%BA%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%89/" title="深度学习第三节（使用Pytorch构建神经网络）">深度学习第三节（使用Pytorch构建神经网络）</a><time datetime="2025-09-13T09:01:40.000Z" title="Created 2025-09-13 17:01:40">2025-09-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/09/12/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%8C%E8%8A%82%EF%BC%88%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%EF%BC%89/" title="深度学习第二节（神经网络与模型训练过程）">深度学习第二节（神经网络与模型训练过程）</a><time datetime="2025-09-12T14:02:16.000Z" title="Created 2025-09-12 22:02:16">2025-09-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/09/12/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%80%E8%8A%82/" title="深度学习第一节">深度学习第一节</a><time datetime="2025-09-12T09:39:03.000Z" title="Created 2025-09-12 17:39:03">2025-09-12</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By zy</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.0</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+    function butterfly_categories_card_injector_config(){
+      var parent_div_git = document.getElementById('recent-posts');
+      var item_html = '<style>li.categoryBar-list-item{width:32.3%;}.categoryBar-list{max-height: 190px;overflow:auto;}.categoryBar-list::-webkit-scrollbar{width:0!important}@media screen and (max-width: 650px){.categoryBar-list{max-height: 160px;}}</style><div class="recent-post-item" style="height:auto;width:100%;padding:0px;"><div id="categoryBar"><ul class="categoryBar-list"></ul></div></div>';
+      console.log('已挂载butterfly_categories_card')
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+      }
+    if( document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    butterfly_categories_card_injector_config()
+    }
+  </script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body></html>
